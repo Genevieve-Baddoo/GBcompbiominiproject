@@ -19,5 +19,12 @@ Main Python Script
 pythonwrapper.py
 ----------------
 
+To run this repo
+
+
+
+
+
+
 
 
