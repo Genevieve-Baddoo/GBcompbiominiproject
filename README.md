@@ -21,7 +21,10 @@ pythonwrapper.py
 
 To run this repo, please clone this github to your current working directory:
 
-`Inline code`
+`https://github.com/Genevieve-Baddoo/hcmvminiproject.git`
+
+Change directory:
+`cd hcmvminiproject`
 
 
 
