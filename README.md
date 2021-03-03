@@ -28,6 +28,7 @@ To run this repo, please clone this github to your current working directory:
 Change directory:
 `cd hcmvminiproject`
 
+To run this script:
 
 
 
