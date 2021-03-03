@@ -5,7 +5,7 @@ This respisotory contains a python pipeline that takes SRA input reads from the 
 Software Tools Required
 =========
 
-
+* Python3
 
 
 
