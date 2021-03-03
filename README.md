@@ -6,8 +6,18 @@ Software Tools Required
 =========
 
 * Python3
+* Biopython
+* Kallisto
+* R
+* SPAdes
+* Bowtie2
 
 
+Main Python Script
+==================
+
+pythonwrapper.py
+----------------
 
 
 
