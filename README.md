@@ -19,7 +19,10 @@ Main Python Script
 pythonwrapper.py
 ----------------
 
-To run this repo
+To run this repo, please clone this github to your current working directory:
+
+`Inline code`
+
 
 
 
