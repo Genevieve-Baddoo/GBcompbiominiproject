@@ -29,7 +29,7 @@ Change directory:
 `cd hcmvminiproject`
 
 
-**To run this script:
+**To run this script:**
 
 
 
