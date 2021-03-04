@@ -12,10 +12,8 @@ records = list(SeqIO.parse(handle, "gb"))
 recs = records[0] #start at first item
 #add count to record # of CDS sequences
 count = 0
-#create two outputfiles
-#write to outputfiles
-outputfile = open("miniProject.log", "w") 
-fastafile = open("CDS_EF999921.fasta","w")
+log_file = open("miniProject.log", "w")
+fastafile = open("EF999921_CDS.fasta","w") #name fasta file, write to it
 
 #want to pull out the CDS reads
 for feature in recs.features:
@@ -29,7 +27,7 @@ for feature in recs.features:
         fastafile.write(str(seqcds) + "\n")
         
 #write in log file the CDS count
-outputfile.write("The HCMV genome (EF99921) has " + str(count) + " CDS." + "\n")    
-outputfile.close() #close both files
+log_file.write("The HCMV genome (EF99921) has " + str(count) + " CDS." + "\n")    
+log_file.close() #close both files
 fastafile.close()
 
