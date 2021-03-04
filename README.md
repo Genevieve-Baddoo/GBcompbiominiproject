@@ -13,6 +13,7 @@ Software Tools Required
 * R
 * SPAdes
 * Bowtie2
+* Linux/Unix
 
 
 Main Python Script
