@@ -43,9 +43,9 @@ def fasta_file():
 #define function to take SRR # and create/run Kallisto on the command line
 #use CDS fasta file created in the previous py code
 def use_Kallisto(SRR):
-    kallisto_idx = 'time kallisto index -i hcmv_index.idx CDS_EF999921.fasta'
+    kallisto_idx = 'time kallisto index -i hcmv_index.idx EF999921_CDS.fasta'
     os.system(kallisto_idx)
-    kallisto_quant = 'time kallisto quant -i hcmv_index.idx -o /homes/gbaddoo/hcmvminiproject' + str(SRR) +' -b 30 -t 4 '+ str(SRR) + '_1.fastq '+ str(SRR)+ '_2.fastq'
+    kallisto_quant = 'time kallisto quant -i hcmv_index.idx -o kallisto_output/' + str(SRR) +' -b 30 -t 4 '+ str(SRR) + '_1.fastq '+ str(SRR)+ '_2.fastq'
     os.system(kallisto_quant)
 
 
@@ -57,8 +57,8 @@ def sleuthInput(SRR):
     outfile.write('sample'+ '\t' + 'condition' + '\t' + 'path' + '\n')
     #based on SRR number, write condition and path to outnput file
     for i in SRR:
-        path = "/" + i
-        if int([i]) % 2 == 0:
+        path = 'kallisto_output/' + i
+        if SRR.index(i) % 2 == 0:
           outfile.write(str(i) + '\t' + '2dpi' + path + '\t')
         else:
           outfile.write(str(i) + '\t' + '6dpi' + path + '\t')
