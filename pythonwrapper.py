@@ -45,7 +45,7 @@ def fasta_file():
 def use_Kallisto(SRR):
     kallisto_idx = 'time kallisto index -i hcmv_index.idx CDS_EF999921.fasta'
     os.system(kallisto_idx)
-    kallisto_quant = 'time kallisto quant -i hcmv_index.idx -o ./' + str(SRR) +' -b 30 -t 4 '+ str(SRR) + '_1.fastq '+ str(SRR)+ '_2.fastq'
+    kallisto_quant = 'time kallisto quant -i hcmv_index.idx -o /homes/gbaddoo/hcmvminiproject' + str(SRR) +' -b 30 -t 4 '+ str(SRR) + '_1.fastq '+ str(SRR)+ '_2.fastq'
     os.system(kallisto_quant)
 
 
@@ -145,3 +145,21 @@ def bp_contigs():
 
 
 
+
+
+
+
+
+
+
+
+#Lastly, run functions by calling them
+fasta_file()
+use_Kallisto(SRR)
+sleuth_input(SRR)
+#sleuth()
+bowtie2(SRR)
+#write_reads(SRR)
+spades(SRR)
+num_contigs()
+bp_contigs()
