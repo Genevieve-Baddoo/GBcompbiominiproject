@@ -50,30 +50,29 @@ def use_Kallisto(SRR):
 
 
 #define function to create file for input into R sleuth
-def sleuthInput(SRR):
-    #input file for sleuth package
-    outfile = open('sleuth_infile.txt','w')
+def sleuth_input(SRR):
+    #input file for sleuth package (read this txt file in read.table for R script)
+    outfile = open('sleuth_infile.txt','w') 
     #initial line in file (column names)
     outfile.write('sample'+ '\t' + 'condition' + '\t' + 'path' + '\n')
     #based on SRR number, write condition and path to outnput file
     for i in SRR:
         path = 'kallisto_output/' + i
-        if SRR.index(i) % 2 == 0:
-          outfile.write(str(i) + '\t' + '2dpi' + path + '\t')
+        if SRR.index(i)%2==0:
+          outfile.write(str(i) + '\t' + '2dpi' + '\t' + path + '\t' + '\n')
         else:
-          outfile.write(str(i) + '\t' + '6dpi' + path + '\t')
+          outfile.write(str(i) + '\t' + '6dpi' + '\t' + path + '\t' + '\n')
     outfile.close()
-
 
 #define function to run sleuth in R
 #want to read sleuth output and add to miniProject.log file
 def sleuth():
     sleuth_command = 'Rscript sleuth.R'
     os.system(sleuth_command)
-    sleu_out = "Rsleuthout.txt"
-    readsleuth = open(sleu_out).readlines()
-    for i in read_sleuth:
-      log_file.write(i + 'n')
+    log_file = open("miniProject.log", "w")
+    sleuth_read = open('sleuth_infile.txt', 'r').readlines()
+    for i in sleuth_read:
+      log_file.write(i + '\n')
 
 
 #Step 4
