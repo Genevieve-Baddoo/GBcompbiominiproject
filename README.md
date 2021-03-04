@@ -61,7 +61,7 @@ Step 2. We will quantify TPM in each sample using kallisto, but first we need to
 
 Step 3. Quantify the TPM of each CDS in each transcriptome using kallisto and use these results as input to find differentially expressed genes between the two timepoints (2pi and 6dpi) using the R package sleuth. Write the following details for each significant transcript (FDR < 0.05) to your log file, include a header row, and tab-delimit each item:
 
-**target_id test_stat pval qval**
+**target_id  test_stat  pval  qval**
 
 Step 4. Using Bowtie2, create an index for HCMV (NCBI accession EF999921). Next, save the reads that map to the HCMV index for use in assembly. Write to your log file the number of reads in each transcriptome before and after the Bowtie2 mapping. For instance, if I was looking at the Donor 1 (2dpi) sample, I would write to the log (numbers here are arbitrary):
 
@@ -80,4 +80,4 @@ Step 7. Write Python code to calculate the length of the assembly (the total num
 Step 8. Write Python code to retrieve the longest contig from your SPAdes assembly. Use the longest contig as blast+ input to query the nr nucleotide database limited to members of the Betaherpesvirinae subfamily. You will need to make a local database of just sequences from the Betaherpesvirinae subfamily. Identify the top 10 hits. For the top 10 hits, write the following to your log file: Subject accession, Percent identity, Alignment length, Start of alignment in query, End of alignment in query, Start of alignment in subject, End of alignment in subject, Bit score, E-value, and Subject Title.
 Include the following header row in the log file, followed by the top 10 hits, and tab-delimit each item:
 
-**sacc pident length qstart qend sstart send bitscore evalue stitle**
+**sacc  pident  length  qstart  qend  sstart  send  bitscore  evalue  stitle**
