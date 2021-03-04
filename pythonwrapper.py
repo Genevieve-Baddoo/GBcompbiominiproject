@@ -20,7 +20,7 @@ from Bio.Blast import NCBIWWW
 SRR = ['SRR5660030', 'SRR5660033', 'SRR5660044', 'SRR5660045']
 
 def fastq(SRR):
-  wget = 'wget https://sra-download.st-va.ncbi.nlm.nih.gov/sos1/sra-pub-run-12/SRR' + SRR + '/' + SRR + '.1'
+  wget = 'wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/' + SRR + '/' + SRR + '.1'
   fastq = 'fastq-dump -I --split-files '+ str(SRR) #what you would use in terminal command line
   rename = 'mv '+ SRR + '.1 ' + SRR
   os.system(wget) #os.system runs the command line
