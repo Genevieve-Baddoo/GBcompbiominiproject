@@ -38,6 +38,18 @@ def fasta_file():
   getfasta = "/usr/bin/python3 miniproject2.py" #path to seperate py file in hcmv repo
   os.system(getfasta)
 
+
+
+kallisto_output = "/homes/gbaddoo/hcmvminiproject"
+#os.mkdir(kallisto_output)
+
+if path.exists('kallisto_output'):
+    print ("File exist")
+else:
+    os.mkdir(kallisto_output)
+
+
+
 #Step 3
 
 #define function to take SRR # and create/run Kallisto on the command line
