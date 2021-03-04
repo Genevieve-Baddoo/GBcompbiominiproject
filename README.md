@@ -13,6 +13,7 @@ Software Tools Required
 * R
 * SPAdes
 * Bowtie2
+* Fastq dump
 * Linux/Unix
 
 
