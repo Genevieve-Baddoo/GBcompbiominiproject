@@ -69,7 +69,7 @@ def sleuth_input(SRR):
     outfile.write('sample'+ '\t' + 'condition' + '\t' + 'path' + '\n')
     #based on SRR number, write condition and path to outnput file
     for i in SRR:
-        path = 'kallisto_output/' + i
+        path = '/homes/gbaddoo/hcmvminiproject/kallisto_output/' + i
         if SRR.index(i)%2==0:
           outfile.write(str(i) + '\t' + '2dpi' + '\t' + path + '\t' + '\n')
         else:
