@@ -1,7 +1,7 @@
 #import necessary modules for HCMV project
 import os
-import os.path
-from os import path
+#import os.path
+#from os import path
 import argparse
 from Bio import SeqIO
 from Bio import Entrez
@@ -40,13 +40,13 @@ def fasta_file():
 
 
 
-kallisto_output = "/homes/gbaddoo/hcmvminiproject"
-os.mkdir(kallisto_output)
+#kallisto_output = "/homes/gbaddoo/hcmvminiproject"
+#os.mkdir(kallisto_output)
 
-if path.exists('kallisto_output'):
-    print ("File exist")
-else:
-    os.mkdir(kallisto_output)
+#if path.exists('kallisto_output'):
+   # print ("File exist")
+#else:
+   # os.mkdir(kallisto_output)
 
 
 #Step 3
