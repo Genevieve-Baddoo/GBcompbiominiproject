@@ -13,19 +13,16 @@ from Bio.Blast import NCBIWWW
 
 #Convert SRA files from NCBI to fastq paired-end reads. Construct path based on SRR numbers
 #defined SSRs as a list
-SRR = ['SRR5660030', 'SRR5660033', 'SRR5660044', 'SRR5660045']
-#print(SRR)
+SRRs = ['SRR5660030', 'SRR5660033','SRR5660044','SRR5660045']
 
-def fastq(SRR):
-  wget = 'wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/' + SRR + '/' + SRR + '.1'
-  fastq = 'fastq-dump -I --split-files '+ str(SRR) #what you would use in terminal command line
-  rename = 'mv '+ SRR + '.1 ' + SRR
-  os.system(wget) #os.system runs the command line
-  os.system(fastq)
-  os.system(rename)
+def fastq(SRRs):
+    for SRR in SRRs:
+        SRR_link = 'https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/'+ SRR + '/'+ SRR + '.1'
+        wget = 'wget' + ' ' + SRR_link
+        fastq_dump = 'fastq-dump -I --split-files' + ' ' + SRR + '.1'
+        os.system(wget)
+        os.system(fastq_dump
 
-for i in SRR:
-  fastq(i)
 
 
 #Step 2
@@ -39,54 +36,19 @@ def fasta_file():
 
 
 
-
 #Step 3
 
 #define function to take SRR # and create/run Kallisto on the command line
 #use CDS fasta file created in the previous py code
-def use_kallisto(SRR):
-    kallisto_idx = 'time kallisto index -i HCMV_index.idx EF999921_CDS.fasta'
-    os.system(kallisto_idx)
-    path = os.getcwd()
-    run_kallisto = 'time kallisto quant -i HCMV_index.idx -o' + path + '/results_' + str(SRR) + ' -b 30 -t 4 ' + str(SRR) + '.1_1.fastq ' + str(SRR) + '.1_2.fastq'
+
+
+def kallisto():
+  run_idx = "kallisto index -i hcmv_index.idx EF999921_CDS.fasta"
+  os.system(run_idx)
+  for SRR in SRRs:
+    path = os.cwd()
+    run_kallisto = 'time kallisto quant -i HCMV_index.idx -o' + path + '/results_' + SRR + ' -b 30 -t 4 ' + SRR + '.1_1.fastq ' + SRR + '.1_2.fastq'
     os.system(run_kallisto)
-
-
-
-def sleuth_input(SRR):
-    # output file that goes in R
-    output = open('sleuth_infile.txt', 'w')
-    # initial line in file
-    output.write('sample' + '\t' + 'condition' + '\t' + 'path' + '\n')
-    # based on SRR number, write condition and path to output file
-    path = os.getcwd()
-    for i in SRR:
-        path1 = path + '/' + 'results_' + i
-        print(path1)
-        if int(i[
-               3:]) % 2 == 0:  
-            output.write(str(i) + '\t' + '2dpi' + '\t' + path1 + '\n')
-        else:
-            output.write(str(i) + '\t' + '6dpi' + '\t' + path1 + '\n')
-    output.close()
-
-def sleuth():
-    sleuth_command = 'Rscript sleuth.R'
-    os.system(sleuth_command)
-    log_file = open("miniProject.log", "w")
-    read_sleuth = open('sleuth_outfile.txt', 'r').readlines()
-    for i in read_sleuth:
-        log_file.write(i + '\n')
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -109,6 +71,4 @@ def sleuth():
 
 
 fasta_file()
-use_kallisto(SRR)
-sleuth_input(SRR)
-sleuth()
+kallisto()
