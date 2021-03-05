@@ -16,7 +16,6 @@ from Bio.Blast import NCBIWWW
 #Step 1
 
 #Convert SRA files from NCBI to fastq paired-end reads. Construct path based on SRR numbers
-#create list with acession numbers listed
 SRR = ['SRR5660030', 'SRR5660033', 'SRR5660044', 'SRR5660045']
 
 def fastq(SRR):
