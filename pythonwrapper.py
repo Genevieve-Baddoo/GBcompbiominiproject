@@ -39,7 +39,14 @@ def fasta_file():
 
 
 
+#Step 3
 
+#define function to take SRR # and create/run Kallisto on the command line
+#use CDS fasta file created in the previous py code
+def use_Kallisto(SRR):
+    kallisto_idx = 'time kallisto index -i hcmv_index.idx EF999921_CDS.fasta'
+    os.system(kallisto_idx)
+    kallisto_quant = 'time kallisto quant -i hcmv_index.idx -o kallisto_output/' + str(SRR) +' -b 30 -t 4 '+ str(SRR) + '_1.fastq '+ str(SRR)+ '_2.fastq'
 
 
 
@@ -57,3 +64,4 @@ def fasta_file():
 
 
 fasta_file()
+use_Kallisto(SRR)
