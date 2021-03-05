@@ -40,13 +40,13 @@ def fasta_file():
 
 
 
-kallisto_output = "/homes/gbaddoo/hcmvminiproject"
+#kallisto_output = "/homes/gbaddoo/hcmvminiproject"
 #os.mkdir(kallisto_output)
 
-if path.exists('kallisto_output'):
-    print ("File exist")
-else:
-    os.mkdir(kallisto_output)
+#if path.exists('kallisto_output'):
+    #print ("File exist")
+#else:
+    #os.mkdir(kallisto_output)
 
 
 
