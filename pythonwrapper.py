@@ -1,7 +1,5 @@
 #import necessary modules for HCMV project
 import os
-#import os.path
-#from os import path
 import argparse
 from Bio import SeqIO
 from Bio import Entrez
@@ -40,52 +38,66 @@ def fasta_file():
 
 
 
-#kallisto_output = "/homes/gbaddoo/hcmvminiproject"
-#os.mkdir(kallisto_output)
-
-#if path.exists('kallisto_output'):
-   # print ("File exist")
-#else:
-   # os.mkdir(kallisto_output)
 
 
 #Step 3
 
 #define function to take SRR # and create/run Kallisto on the command line
 #use CDS fasta file created in the previous py code
-def use_Kallisto(SRR):
-    kallisto_idx = 'time kallisto index -i hcmv_index.idx EF999921_CDS.fasta'
+def use_kallisto(SRR):
+    kallisto_idx = 'time kallisto index -i HCMV_index.idx EF999921_CDS.fasta'
     os.system(kallisto_idx)
-    kallisto_quant = 'time kallisto quant -i hcmv_index.idx -o kallisto_output/' + str(SRR) +' -b 30 -t 4 '+ str(SRR) + '_1.fastq '+ str(SRR)+ '_2.fastq'
+    run_kallisto = 'time kallisto quant -i HCMV_index.idx -o' + path + '/results_' + str(SRR) + ' -b 30 -t 4 ' + str(SRR) + '.1_1.fastq ' + str(SRR) + '.1_2.fastq'
+    os.system(run_kallisto)
 
 
-
-
-#define function to generate the sleuth input
 def sleuth_input(SRR):
-    #input file for sleuth package (read this txt file in read.table for R script)
-    outfile = open('sleuth_infile.txt','w') 
-    #initial line in file (column names)
-    outfile.write('sample'+ '\t' + 'condition' + '\t' + 'path' + '\n')
-    #based on SRR number, write condition and path to outnput file
+    # output file that goes in R
+    output = open('sleuth_infile.txt', 'w')
+    # initial line in file
+    output.write('sample' + '\t' + 'condition' + '\t' + 'path' + '\n')
+    # based on SRR number, write condition and path to output file
+    path = os.getcwd()
     for i in SRR:
-        path = '/homes/gbaddoo/hcmvminiproject/kallisto_output/' + i
-        if SRR.index(i)%2==0:
-          outfile.write(str(i) + '\t' + '2dpi' + '\t' + path + '\t' + '\n')
+        path1 = path + '/' + 'results_' + i
+        print(path1)
+        if int(i[
+               3:]) % 2 == 0:  
+            output.write(str(i) + '\t' + '2dpi' + '\t' + path1 + '\n')
         else:
-          outfile.write(str(i) + '\t' + '6dpi' + '\t' + path + '\t' + '\n')
-    outfile.close()
+            output.write(str(i) + '\t' + '6dpi' + '\t' + path1 + '\n')
+    output.close()
 
-
-#define function to run sleuth in R
-#want to read sleuth output and add to miniProject.log file
 def sleuth():
     sleuth_command = 'Rscript sleuth.R'
     os.system(sleuth_command)
     log_file = open("miniProject.log", "w")
-    sleuth_read = open('sleuth_infile.txt', 'r').readlines()
-    for i in sleuth_read:
-      log_file.write(i + '\n')
+    read_sleuth = open('sleuth_outfile.txt', 'r').readlines()
+    for i in read_sleuth:
+        log_file.write(i + '\n')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -95,6 +107,6 @@ def sleuth():
 
 
 fasta_file()
-use_Kallisto(SRR)
+use_kallisto(SRR)
 sleuth_input(SRR)
 sleuth()
