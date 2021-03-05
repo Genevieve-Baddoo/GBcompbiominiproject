@@ -30,6 +30,27 @@ def run_fastq(SRR):
     os.system(fastqfiles)
     print(fastqfiles)
 
+
+
+
+#want to parse
+parser = argparse.ArgumentParser()
+parser.add_argument("--SRR", nargs="+", required=True, help = "SRR input to assemble and BLAST")
+parser.add_argument("--fastq", action="store_true", help = "SRR input data in paired end fastq format")
+p = parser.parse_args()
+
+
+
+
+
+SRR = []
+#get SRRs from argument
+for SRR in p.SRR:
+  SRR.append(SRR)
+
+
+
+
   
 
 
