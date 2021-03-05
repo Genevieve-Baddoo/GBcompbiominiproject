@@ -24,5 +24,21 @@ def fastq(SRRs):
         os.system(fastq_dump)
 
 
+def fasta():
+    getfasta = 'usr/bin/python3 miniproject2.py'
+    os.system(getfasta)
+
+
+
+
+
+
+
+
+
+
+
+#run functions
 
 fastq(SRRs)
+fasta()
