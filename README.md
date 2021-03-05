@@ -35,7 +35,7 @@ Change directory:
 
 **Next, run python wrapper.py file from the hcmvminiproject directory**
 
-
+`$python3 pythonwrapper.py`
 
 
 
