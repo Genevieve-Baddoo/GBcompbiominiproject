@@ -39,6 +39,8 @@ def fasta_file():
 
 
 
+
+
 #Step 3
 
 #define function to take SRR # and create/run Kallisto on the command line
@@ -51,10 +53,31 @@ def use_Kallisto(SRR):
 
 
 
+#define function to generate the sleuth input
+def sleuth_input(SRR):
+    #input file for sleuth package (read this txt file in read.table for R script)
+    outfile = open('sleuth_infile.txt','w') 
+    #initial line in file (column names)
+    outfile.write('sample'+ '\t' + 'condition' + '\t' + 'path' + '\n')
+    #based on SRR number, write condition and path to outnput file
+    for i in SRR:
+        path = 'kallisto_output/' + i
+        if SRR.index(i)%2==0:
+          outfile.write(str(i) + '\t' + '2dpi' + '\t' + path + '\t' + '\n')
+        else:
+          outfile.write(str(i) + '\t' + '6dpi' + '\t' + path + '\t' + '\n')
+    outfile.close()
 
 
-
-
+#define function to run sleuth in R
+#want to read sleuth output and add to miniProject.log file
+def sleuth():
+    sleuth_command = 'Rscript sleuth.R'
+    os.system(sleuth_command)
+    log_file = open("miniProject.log", "w")
+    sleuth_read = open('sleuth_infile.txt', 'r').readlines()
+    for i in sleuth_read:
+      log_file.write(i + '\n')
 
 
 
@@ -65,3 +88,5 @@ def use_Kallisto(SRR):
 
 fasta_file()
 use_Kallisto(SRR)
+sleuth_input(SRR)
+sleuth()
