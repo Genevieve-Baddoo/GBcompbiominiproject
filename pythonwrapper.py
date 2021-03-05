@@ -25,30 +25,6 @@ def fastq(SRRs):
 
 
 
-#Step 2
-
-#define function to create fasta file from CDS of NCBI Accession EF999921
-#made a path to py file for 2nd step
-def fasta_file():
-  getfasta = "/usr/bin/python3 miniproject2.py" #path to seperate py file in hcmv repo
-  os.system(getfasta)
-
-
-
-
-#Step 3
-
-#define function to take SRR # and create/run Kallisto on the command line
-#use CDS fasta file created in the previous py code
-
-
-def kallisto():
-  run_idx = "kallisto index -i hcmv_index.idx EF999921_CDS.fasta"
-  os.system(run_idx)
-  for SRR in SRRs:
-    path = os.cwd()
-    run_kallisto = 'time kallisto quant -i HCMV_index.idx -o' + path + '/results_' + SRR + ' -b 30 -t 4 ' + SRR + '.1_1.fastq ' + SRR + '.1_2.fastq'
-    os.system(run_kallisto)
 
 
 
@@ -63,12 +39,3 @@ def kallisto():
 
 
 
-
-
-
-
-
-
-
-fasta_file()
-kallisto()
