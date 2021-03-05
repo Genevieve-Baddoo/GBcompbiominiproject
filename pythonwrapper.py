@@ -47,8 +47,10 @@ def fasta_file():
 def use_kallisto(SRR):
     kallisto_idx = 'time kallisto index -i HCMV_index.idx EF999921_CDS.fasta'
     os.system(kallisto_idx)
+    path = os.getcwd()
     run_kallisto = 'time kallisto quant -i HCMV_index.idx -o' + path + '/results_' + str(SRR) + ' -b 30 -t 4 ' + str(SRR) + '.1_1.fastq ' + str(SRR) + '.1_2.fastq'
     os.system(run_kallisto)
+
 
 
 def sleuth_input(SRR):
