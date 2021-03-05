@@ -1,38 +1,33 @@
-#load packages
+#load sleuth package 
 library(sleuth)
+#load the dplyr package for data frame filtering 
+library(dplyr)
+#load data.table package to read in table data  
 library(data.table)
 
-#read in the table you made describing samples and kallisto output 
-stab <- read.table("sleuth_infile.txt", header=TRUE, stringsAsFactors=FALSE)
+#read in the table describing samples and kallisto output 
+stab<-read.table("sleuth_infile.txt",header=TRUE,stringsAsFactors=FALSE,sep='\t')
 
 #initialize sleuth object
-so <- sleuth_prep(stab)
+so<-sleuth_prep(stab)
 
 
-#fit a model comparing the two conditions 
-so <- sleuth_fit(so, ~condition, 'full')
+#fit a model comparing two conditions 
+so<-sleuth_fit(so,~condition,'full')
 
+#fit the reduced model to compare in the likelihood ratio test
+so<-sleuth_fit(so,~1,'reduced')
 
-#fit the reduced model to compare in the likelihood ratio test 
-so <- sleuth_fit(so, ~1, 'reduced')
-
-
-#perform the likelihood ratio test for differential expression between conditions 
-so <- sleuth_lrt(so, 'reduced', 'full')
-
-#load the dplyr package for data.frame filtering
-library(dplyr)
-
+#perform the likelihood ratio test for differential expression between conditions (2dpi & 6dpi)
+so<-sleuth_lrt(so,'reduced','full')
 
 #extract the test results from the sleuth object 
-sleuth_table <- sleuth_results(so, 'reduced:full', 'lrt', show_all = FALSE) 
+sleuth_table<-sleuth_results (so,'reduced:full','lrt',show_all=FALSE)
 
+#filter most significant results (FDR/qval <0.05) and sort by pval 
+sleuth_significant<-dplyr::filter(sleuth_table,qval<=0.05)%>%dplyr::arrange(pval)
+sleuth_output<-sleuth_significant %>% select(target_id,test_stat,pval,qval)
 
-#filter most significant results (FDR/qval < 0.05) and sort by pval
-sleuth_significant <- dplyr::filter(sleuth_table, qval <= 0.05) %>% dplyr::arrange(pval) 
-sig_sleuth <- sleuth_significant %>% select(target_id, test_stat, pval, qval)
-sig_sleuth
-
-#write target id, test stat, pval and qval for significant transcript
-#include header, tab-delimit 
-write.table(sig_sleuth, file="sleuth_outfile.txt",quote= FALSE,row.names= FALSE)
+#write FDR <0.05 transcripts to file 
+#sleuth_output<-na.omit(sleuth_output)
+write.table(sleuth_output,file='sleuth_outfile.txt', quote=FALSE,row.names=FALSE)
