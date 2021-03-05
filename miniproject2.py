@@ -30,4 +30,3 @@ for feature in recs.features:
 log_file.write("The HCMV genome (EF99921) has " + str(count) + " CDS." + "\n")    
 log_file.close() #close both files
 fastafile.close()
-
