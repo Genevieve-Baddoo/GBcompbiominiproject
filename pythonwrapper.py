@@ -21,21 +21,4 @@ def fastq(SRRs):
         wget = 'wget' + ' ' + SRR_link
         fastq_dump = 'fastq-dump -I --split-files' + ' ' + SRR + '.1'
         os.system(wget)
-        os.system(fastq_dump
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        os.system(fastq_dump)
