@@ -65,7 +65,13 @@ def sleuth_input(SRRs):
     output.close()
 
 
-
+def sleuth():
+    sleuth_command = 'Rscript sleuth.R'
+    os.system(sleuth_command)
+    log_file = open("miniProject.log", "w")
+    read_sleuth = open('sleuth_outfile.txt', 'r').readlines()
+    for SRR in read_sleuth:
+        log_file.write(SRR + '\n')
 
 
 
@@ -78,4 +84,4 @@ fasta()
 kallisto_idx()
 kallisto_quant(SRRs)
 sleuth_input(SRRs)
-
+sleuth()
