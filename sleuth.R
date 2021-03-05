@@ -1,4 +1,3 @@
-getwd()
 #load packages
 library(sleuth)
 library(data.table)
