@@ -7,9 +7,9 @@ from Bio import SearchIO
 from Bio.Seq import Seq
 from Bio.Blast import NCBIWWW
 
-#Define a function for each tool/step in wrapper 
+#Define a function for each tool/step in wrapper
 
-#Step 1 
+#Step 1
 
 #Convert SRA files from NCBI to fastq paired-end reads. Construct path based on SRR numbers
 #defined SSRs as a list
@@ -22,3 +22,7 @@ def fastq(SRRs):
         fastq_dump = 'fastq-dump -I --split-files' + ' ' + SRR + '.1'
         os.system(wget)
         os.system(fastq_dump)
+
+
+
+fastq(SRRs)
