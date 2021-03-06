@@ -83,7 +83,7 @@ def bowtie2(SRRs):
   run_build = "bowtie2-build EF999921_CDS.fasta HCMV"
   os.system(run_build)
   for SRR in SRRs:
-    run_bowtie2 = "bowtie2 --no-unal --al-conc " + SRR + " --quiet -x HCMV -1 "+ SRR +".1.fastq -2 " + SRR + ".2.fastq -S " + SRR + "map.sam"
+    run_bowtie2 = "bowtie2 --no-unal --al-conc " + SRR + " --quiet -x HCMV -1 "+ SRR +".1_1.fastq -2 " + SRR + ".1_2.fastq -S " + SRR + "map.sam"
     os.system(run_bowtie2)
 
 
