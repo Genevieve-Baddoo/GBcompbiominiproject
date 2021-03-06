@@ -77,7 +77,7 @@ def sleuth():
 
 
 
-#function to run bowtie2  
+#function to run bowtie2
 def bowtie2(SRRs):
   #build bowtie2 index from EF999921 fasta file
   run_build = "bowtie2-build EF999921_CDS.fasta HCMV"
