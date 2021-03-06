@@ -25,6 +25,9 @@ def fastq(SRRs):
         os.system(rename)
         os.system(fastq_dump)
 
+#Step 2
+#define function to create fasta file from CDS of NCBI Accession EF999921
+#made a path to py file for 2nd step
 
 def fasta():
     getfasta = '/usr/bin/python3 miniproject2.py'
@@ -167,7 +170,8 @@ parser.add_argument("--SRRs", nargs="+", required=True, help = "input SRRs to ev
 p = parser.parse_args()
 
 
-≈
+
+
 
 #run functions
 fastq(SRRs)
