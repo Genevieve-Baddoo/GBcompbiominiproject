@@ -35,7 +35,23 @@ Change directory:
 
 **Next, run python wrapper.py file from the hcmvminiproject directory**
 
-`$python3 pythonwrapper.py`
+
+
+* --SSRs is the argument needed to run with test data
+
+
+
+`$python3 pythonwrapper.py --SRRs SRR5660030 SRR5660033 SRR5660044 SRR5660045`
+
+
+
+Running pythonwrapper.py with other test data:
+
+* Call python wrapper script and adjust arguments based on SRR file names and input format
+
+* Note: use data in .sra format. Retrieve files first and then move them into the hcmv directory
+
+
 
 
 
