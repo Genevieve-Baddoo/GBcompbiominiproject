@@ -161,8 +161,16 @@ def blast_longestcontigs():
 
 
 
+#next, parse argument reqired
+parser = argparse.ArgumentParser()
+parser.add_argument("--SRRs", nargs="+", required=True, help = "input SRRs to eventually assemble and blast")
+p = parser.parse_args()
 
-#add comment to see if you can push
+
+
+
+
+
 
 
 #run functions
@@ -178,3 +186,4 @@ run_spades(SRRs)
 contig_subset()
 length_assembly()
 blast_longestcontigs()
+
