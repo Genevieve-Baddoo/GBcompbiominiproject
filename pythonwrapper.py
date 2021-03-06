@@ -165,20 +165,6 @@ def blast_longestcontigs():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #run functions
 fastq(SRRs)
 fasta()
