@@ -88,6 +88,46 @@ def bowtie2(SRRs):
 
 
 
+def num_reads(SRRs):
+  log_file = open("miniProject.log", "a")
+  for SRR in SRRs:
+    name1 = "mv " + SRR + ".1 " + SRR + ".01.fastq"
+    os.system(name1) #rename bowtie2 output files to end in fastq
+    name2 = "mv " + SRR + ".2 " + SRR + ".02.fastq"
+    os.system(name2) #rename bowtie2 output files to end in fastq
+    fastq_before = open(SRR + ".1.fastq")
+    fastq_after = open(SRR + ".01.fastq")
+    count_before = 0
+    count_after = 0
+    for line in fastq_before:
+      count_before = count_before+1
+    for line in fastq_after:
+      count_after = count_after+1
+    count_before = int(count_before/4)
+    count_after = int(count_after/4)
+    if SRR == SRR[0]:
+      log_file.write("Donor 1 (2dpi) had " + str(count_before) + " read pairs before Bowtie2 filtering and " + str(count_after) + " read pairs after.\n")
+    elif SRR == SRR[1]:
+      log_file.write("Donor 1 (6dpi) had " + str(count_before) + " read pairs before Bowtie2 filtering and " + str(count_after) + " read pairs after.\n")
+    elif SRR == SRR[2]:
+      log_file.write("Donor 3 (2dpi) had " + str(count_before) + " read pairs before Bowtie2 filtering and " + str(count_after) + " read pairs after.\n")
+    elif SRR == SRR[3]:
+      log_file.write("Donor 3 (6dpi) had " + str(count_before) + " read pairs before Bowtie2 filtering and " + str(count_after) + " read pairs after.\n")    
+  log_file.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -105,3 +145,4 @@ kallisto_quant(SRRs)
 sleuth_input(SRRs)
 sleuth()
 bowtie2(SRRs)
+num_reads(SRRs)
