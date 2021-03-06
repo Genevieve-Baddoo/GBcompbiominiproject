@@ -87,15 +87,15 @@ def bowtie2(SRRs):
     os.system(run_bowtie2)
 
 
-
+#define function to count reads before and after filtering with bowtie2
 def num_reads(SRRs):
   log_file = open("miniProject.log", "a")
   for SRR in SRRs:
-    name1 = "mv " + SRR + ".1 " + SRR + ".01.fastq"
+    name1 = "mv " + SRR + ".1_1." + SRR + ".01.fastq"
     os.system(name1) #rename bowtie2 output files to end in fastq
-    name2 = "mv " + SRR + ".2 " + SRR + ".02.fastq"
+    name2 = "mv " + SRR + ".1_2." + SRR + ".02.fastq"
     os.system(name2) #rename bowtie2 output files to end in fastq
-    fastq_before = open(SRR + ".1.fastq")
+    fastq_before = open(SRR + ".1_1.fastq")
     fastq_after = open(SRR + ".01.fastq")
     count_before = 0
     count_after = 0
@@ -114,6 +114,7 @@ def num_reads(SRRs):
     elif SRR == SRR[3]:
       log_file.write("Donor 3 (6dpi) had " + str(count_before) + " read pairs before Bowtie2 filtering and " + str(count_after) + " read pairs after.\n")    
   log_file.close()
+
 
 
 
