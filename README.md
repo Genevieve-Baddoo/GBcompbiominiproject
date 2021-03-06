@@ -66,11 +66,14 @@ Important directories and output files
 * miniProject.log
 >contains all the output from pythonwrapper.py, including counts of CDS, signifcant results from Sleuth filtered by FDR<0.05, and 10 top hits from BLASTn
 
+* EF999921_CDS.fasta
+>contains CDS of EF999921
 
+* kallisto_results directory(folder)
+>contains results from quantifying the TPM of each CDS in each transcriptome with kallisto
 
-
-
-
+* spades directory(folder)
+>contains all results from SPAdes; results file used in python wrapper is contigs.fasta
 
 
 **Project Steps**
