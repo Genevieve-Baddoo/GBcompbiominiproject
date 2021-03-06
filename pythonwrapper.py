@@ -167,11 +167,7 @@ parser.add_argument("--SRRs", nargs="+", required=True, help = "input SRRs to ev
 p = parser.parse_args()
 
 
-
-
-
-
-
+≈
 
 #run functions
 fastq(SRRs)
