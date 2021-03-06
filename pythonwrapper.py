@@ -91,12 +91,12 @@ def bowtie2(SRRs):
 def num_reads(SRRs):
   log_file = open("miniProject.log", "a")
   for SRR in SRRs:
-    name1 = "mv " + SRR + ".1_1." + SRR + ".01.fastq"
+    name1 = "mv " + SRR + ".1_1." + SRR + ".1.fastq"
     os.system(name1) #rename bowtie2 output files to end in fastq
-    name2 = "mv " + SRR + ".1_2." + SRR + ".02.fastq"
+    name2 = "mv " + SRR + ".1_2." + SRR + ".2.fastq"
     os.system(name2) #rename bowtie2 output files to end in fastq
     fastq_before = open(SRR + ".1_1.fastq")
-    fastq_after = open(SRR + ".01.fastq")
+    fastq_after = open(SRR + ".1.fastq")
     count_before = 0
     count_after = 0
     for line in fastq_before:
@@ -115,6 +115,12 @@ def num_reads(SRRs):
       log_file.write("Donor 3 (6dpi) had " + str(count_before) + " read pairs before Bowtie2 filtering and " + str(count_after) + " read pairs after.\n")    
   log_file.close()
 
+def run_spades(SRRs):
+    spades = 'spades -k 55,77,99,127 -t 2 --only-assembler --pe1-1 ' + SRRs[0] + '.1.fastq --pe1-2 '+ SRRs[0] + '.2.fastq --pe2-1 ' + SRRs[1] + '.1.fastq --pe2-2 ' + SRRs[1] + '.2.fastq --pe3-1 ' + SRRs[2] + '.1.fastq --pe3-2 ' + SRRs[2] +'.2.fastq --pe4-1 ' + SRRs[3] + '.1.fastq --pe4-2 ' + SRRs[3] + '.2.fastq' -o spades’
+    os.system(spades)
+    miniProject_log = open("miniProject.log", "a")
+    miniProject_log.write(spades + '\n')
+    miniProject_log.close()
 
 
 
@@ -147,3 +153,4 @@ sleuth_input(SRRs)
 sleuth()
 bowtie2(SRRs)
 num_reads(SRRs)
+run_spades(SRRs)
