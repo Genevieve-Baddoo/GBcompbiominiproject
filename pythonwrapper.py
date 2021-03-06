@@ -42,7 +42,7 @@ path = os.getcwd()
 
 def kallisto_quant(SRRs):
   for SRR in SRRs:
-    quant = 'time kallisto quant -i HCMV_index.idx -o' + path + '/results_' + SRR + ' -b 30 -t 4 ' + SRR + '.1_1.fastq ' + SRR + '.1_2.fastq' + SRR + '1.fastq' + SRR + '2.fastq'
+    quant = 'time kallisto quant -i hcmv_index.idx -o' + path + '/results_' + SRR + ' -b 30 -t 4 ' + SRR + '.1_1.fastq ' + SRR + '.1_2.fastq' + SRR + '_1.fastq' + SRR + '_2.fastq'
     os.system(quant)
 
 
