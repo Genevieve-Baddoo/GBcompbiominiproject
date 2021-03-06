@@ -34,10 +34,6 @@ Change directory:
 **Next, run python wrapper.py file from the hcmvminiproject directory**
 
 
-`$python3 pythonwrapper.py`
-
-To run with test data:
-
 * --SSRs is the argument needed to run with test data
 
 
