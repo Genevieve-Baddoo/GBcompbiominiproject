@@ -15,12 +15,14 @@ from Bio.Blast import NCBIWWW
 #defined SSRs as a list
 SRRs = ['SRR5660030', 'SRR5660033','SRR5660044','SRR5660045']
 
+
 def fastq(SRRs):
     for SRR in SRRs:
-        SRR_link = 'https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/'+ SRR + '/'+ SRR + '.1'
-        wget = 'wget' + ' ' + SRR_link
-        fastq_dump = 'fastq-dump -I --split-files' + ' ' + SRR + '.1'
+        wget = 'wget https://sra-downloadb.be-md.ncbi.nlm.nih.gov/sos2/sra-pub-run-11/' + SRR + '/' + SRR + '.1'
+        rename = 'mv ' + SRR + '.1 ' + SRR
+        fastq_dump = 'fastq-dump -I --split-files ' + SRR + '.1'
         os.system(wget)
+        os.system(rename)
         os.system(fastq_dump)
 
 
@@ -42,7 +44,7 @@ path = os.getcwd()
 
 def kallisto_quant(SRRs):
   for SRR in SRRs:
-    quant = 'time kallisto quant -i hcmv_index.idx -o' + path + '/results_' + SRR + ' -b 30 -t 4 ' + SRR + '.1_1.fastq ' + SRR + '.1_2.fastq' + SRR + '_1.fastq' + SRR + '_2.fastq'
+    quant = 'time kallisto quant -i HCMV_index.idx -o' + path + '/results_' + SRR + ' -b 30 -t 4 ' + SRR + '.1_1.fastq ' + SRR + '.1_2.fastq'
     os.system(quant)
 
 
