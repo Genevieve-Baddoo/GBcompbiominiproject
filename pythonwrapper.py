@@ -77,6 +77,23 @@ def sleuth():
 
 
 
+#function to run bowtie2  
+def bowtie2(SRRs):
+  #build bowtie2 index from EF999921 fasta file
+  run_build = "bowtie2-build EF999921_CDS.fasta HCMV"
+  os.system(run_build)
+  for SRR in SRRs:
+    run_bowtie2 = "bowtie2 --no-unal --al-conc " + SRR + " --quiet -x HCMV -1 "+ SRR +".1.fastq -2 " + SRR + ".2.fastq -S " + SRR + "map.sam"
+    os.system(run_bowtie2)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -87,3 +104,4 @@ kallisto_idx()
 kallisto_quant(SRRs)
 sleuth_input(SRRs)
 sleuth()
+bowtie2(SRRs)
