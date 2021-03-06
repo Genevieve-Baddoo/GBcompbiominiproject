@@ -34,13 +34,14 @@ Change directory:
 **Next, run python wrapper.py file from the hcmvminiproject directory**
 
 
+`$python3 pythonwrapper.py`
+
+To run with test data:
 
 * --SSRs is the argument needed to run with test data
 
 
-
-`$python3 pythonwrapper.py --SRRs SRR5660030 SRR5660033 SRR5660044 SRR5660045`
-
+`$python3 pythonwrapper.py --SRRlist SRR5660030 SRR5660033 SRR5660044 SRR5660045`
 
 
 Running pythonwrapper.py with other test data:
@@ -57,7 +58,7 @@ Example on command line:
 
 You can download in hcmvminiproject or move SRR file into this directory with:
 
-`mv SRR5660030.1 hcmvminiproject/`
+`mv SRR5660030.1 hcmvminiproject`
 
 
 Important directories and output files
