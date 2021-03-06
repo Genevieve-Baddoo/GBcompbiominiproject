@@ -31,19 +31,49 @@ Change directory:
 `cd hcmvminiproject`
 
 
-
-
 **Next, run python wrapper.py file from the hcmvminiproject directory**
 
-`$python3 pythonwrapper.py`
+
+
+* --SSRs is the argument needed to run with test data
 
 
 
+`$python3 pythonwrapper.py --SRRs SRR5660030 SRR5660033 SRR5660044 SRR5660045`
 
 
 
+Running pythonwrapper.py with other test data:
+
+* Call python wrapper script and adjust arguments based on SRR file names and input format
+
+* Note: use data in .sra format. Retrieve files first and then move them into the hcmv directory
+
+Example on command line:
 
 
+`wget https://sra-download.st-va.ncbi.nlm.nih.gov/sos1/sra-pub-run-12/SRR5660030/SRR5660030.1`
+
+
+You can download in hcmvminiproject or move SRR file into this directory with:
+
+`mv SRR5660030.1 hcmvminiproject/`
+
+
+Important directories and output files
+==================
+
+* miniProject.log
+>contains all the output from pythonwrapper.py, including counts of CDS, signifcant results from Sleuth filtered by FDR<0.05, and 10 top hits from BLASTn
+
+* EF999921_CDS.fasta
+>contains CDS of EF999921
+
+* kallisto_results directory(folder)
+>contains results from quantifying the TPM of each CDS in each transcriptome with kallisto
+
+* spades directory(folder)
+>contains all results from SPAdes; results file used in python wrapper is contigs.fasta
 
 
 **Project Steps**
