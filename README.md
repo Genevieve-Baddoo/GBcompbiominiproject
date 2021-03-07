@@ -40,6 +40,9 @@ Change directory:
 `$python3 pythonwrapper.py --SRRs SRR5660030 SRR5660033 SRR5660044 SRR5660045`
 
 
+Note: Test data in repo contains the first 10,000 input reads of the fastq files
+
+
 Running pythonwrapper.py with other test data:
 
 * Call python wrapper script and adjust arguments based on SRR file names and input format
