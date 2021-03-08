@@ -69,11 +69,12 @@ Important directories and output files
 * EF999921_CDS.fasta
 >contains CDS of EF999921
 
+* hcmv_index.idx
+>index file created and used to run kallisto
+
 * kallisto_results directory(folder)
 >contains results from quantifying the TPM of each CDS in each transcriptome with kallisto
 
-* spades directory(folder)
->contains all results from SPAdes; results file used in python wrapper is contigs.fasta
 
 
 **Project Steps**
